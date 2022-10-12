@@ -1,0 +1,8 @@
+Document: mimetic-doc
+Title: mimetic Documentation
+Abstract: Documentation for the mimetic library
+Section: Network/Communication
+
+Format: HTML
+Index: /usr/share/doc/libmimetic-dev/html/index.html
+Files: /usr/share/doc/libmimetic-dev/html/*.html

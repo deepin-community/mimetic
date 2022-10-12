@@ -1,0 +1,19 @@
+#!/usr/bin/make -f
+
+export DEB_BUILD_MAINT_OPTIONS = hardening=+all
+
+%:
+	dh $@
+
+override_dh_auto_build-indep:
+ifeq ($(filter nodoc,$(DEB_BUILD_OPTIONS))$(filter nodoc,$(DEB_BUILD_PROFILES)),)
+	$(MAKE) -C $(CURDIR)/doc docs
+endif
+
+override_dh_installexamples-indep:
+	dh_installexamples
+	sed -i -e "s,$(CURDIR),/<<PKGBUILDDIR>>,g" $(CURDIR)/debian/libmimetic-doc/usr/share/doc/libmimetic-dev/examples/Makefile
+
+override_dh_makeshlibs:
+	# For new symbols when compiled with GCC 7
+	dh_makeshlibs -V'libmimetic0v5 (>= 0.9.8-6~)'

@@ -1,0 +1,357 @@
+mimetic (0.9.8-10) unstable; urgency=medium
+
+  * debian/watch: use more macros.
+  * Set Rules-Requires-Root: no.
+  * Drop transition for old debug package migration.
+  * Add patch to fix a build failure with GCC-11. (Closes: #984235)
+  * Update years of packaging copyright.
+  * Declare compliance with Debian Policy 4.5.1.
+  * Bump debhelper-compat to 13.
+  * Add debian/upstream/metadata.
+
+ -- gregor herrmann <gregoa@debian.org>  Sun, 15 Aug 2021 15:00:36 +0200
+
+mimetic (0.9.8-9) unstable; urgency=medium
+
+  * Fix build failure: override dh_installexamples only for arch-
+    independent packages.
+  * Add debian/not-installed to aid dh_missing.
+
+ -- gregor herrmann <gregoa@debian.org>  Wed, 29 Jan 2020 15:53:17 +0100
+
+mimetic (0.9.8-8) unstable; urgency=medium
+
+  * Install libmimetic.a into libmimetic-dev.
+    Thanks to Paul Grégoire for the bug report. (Closes: #950136)
+  * Replace build path in generated example Makefile with a constant.
+  * Declare compliance with Debian Policy 4.5.0.
+  * Bump debhelper-compat to 12.
+  * debian/watch: use uscan version 4.
+  * Drop override_dh_compress.
+    dh doesn't compress examples anymore in compat level 12.
+  * Update years of packaging copyright.
+
+ -- gregor herrmann <gregoa@debian.org>  Wed, 29 Jan 2020 13:57:03 +0100
+
+mimetic (0.9.8-7) unstable; urgency=medium
+
+  * debian/control: update Vcs-* fields.
+  * Drop unneeded lintian overrides about Vcs-* URLs.
+  * Mark libmimetic-doc as Multi-Arch: foreign.
+  * Use debhelper compat level 11.
+    Additionally adjust paths for doc-base registration.
+  * Declare compliance with Debian Policy 4.2.1.
+  * Remove trailing whitespace from debian/*.
+  * Update years of packaging copyright.
+
+ -- gregor herrmann <gregoa@debian.org>  Sat, 27 Oct 2018 21:56:31 +0200
+
+mimetic (0.9.8-6) unstable; urgency=medium
+
+  * Adapt to C++ name mangling in GCC 7:
+    - Build-Depend on g++ (>= 4:7)
+    - Override dh_makeshlibs for new symbols from gcc 7
+    Thank to James Cowgill for the bug report.
+    Closes: #871307
+  * Update years of packaging copyright.
+  * Bump debhelper compat level and dependency to 10.
+    Drop manual autoreconf fragments.
+  * Support DEB_BUILD_OPTIONS/DEB_BUILD_PROFILES "nodoc".
+  * Use HTTPS for Format URL in debian/copyright.
+  * Add linitian override about insecure Vcs URLs.
+  * Add all hardening options in debian/rules.
+  * Declare compliance with Debian Policy 4.0.1.
+
+ -- gregor herrmann <gregoa@debian.org>  Mon, 07 Aug 2017 16:21:19 -0400
+
+mimetic (0.9.8-5) unstable; urgency=medium
+
+  * Add patch signed-char.patch to fix build failure on architectures
+    where char is unsigned.
+    Thanks to Adrian Bunk for the bug report. (Closes: #859963)
+
+ -- gregor herrmann <gregoa@debian.org>  Fri, 14 Apr 2017 17:38:11 +0200
+
+mimetic (0.9.8-4) unstable; urgency=medium
+
+  * debian/rules: change dh_strip argument from --ddeb-migration to
+    --dbgsym-migration.
+  * debian/control: build-depend on debhelper 9.20160114 to ensure support
+    for --dbgsym-migration in dh_strip.
+
+ -- gregor herrmann <gregoa@debian.org>  Fri, 15 Jan 2016 15:29:30 +0100
+
+mimetic (0.9.8-3) unstable; urgency=medium
+
+  * Migrate from manual "-dbg" package to automatic "-dbgsym" one:
+     + debian/control: drop "Package: libmimetic0-dbg".
+     + debian/rules: change override_dh_strip to use dh_strip's
+       "--ddeb-migration" option.
+
+ -- gregor herrmann <gregoa@debian.org>  Sun, 20 Dec 2015 13:01:16 +0100
+
+mimetic (0.9.8-2.1) unstable; urgency=medium
+
+  * Non-maintainer upload.
+  * Upload libmimetic0v5 to unstable.
+
+ -- Simon McVittie <smcv@debian.org>  Mon, 24 Aug 2015 10:04:57 +0100
+
+mimetic (0.9.8-2) experimental; urgency=medium
+
+  * Rename libmimetic0 to libmimetic0v5 (libstdc++6 ABI changes).
+    Add Conflict/Replaces on old libmimetic0. (Closes: #791203)
+  * Upload to experimental for now.
+  * Declare compliance with Debian Policy 3.9.6.
+
+ -- gregor herrmann <gregoa@debian.org>  Mon, 03 Aug 2015 14:40:38 +0200
+
+mimetic (0.9.8-1) unstable; urgency=medium
+
+  * New upstream release.
+  * Drop patches, both merged upstream.
+  * debian/{rules,control}: split building of arch:indep -doc package (use
+    Build-Depends-Indep and override_dh_build-indep target).
+  * Update years of packaging copyright.
+  * Declare compliance with Debian Policy 3.9.5.
+
+ -- gregor herrmann <gregoa@debian.org>  Tue, 17 Jun 2014 18:14:20 +0200
+
+mimetic (0.9.7-4) unstable; urgency=low
+
+  * Fix upstream URL in debian/{control,copyright,watch}.
+    Thanks to Bart Martens for the bug report.
+    (Closes: #697171)
+  * Add patch to fix build failure with clang.
+    Thanks to Raphael Rigo for the bug report and the patch.
+    (Closes: #718306)
+  * Mark -dbg package as Multi-Arch: same.
+    Thanks to lintian.
+  * Update regexp in debian/watch.
+    Thanks to Bart Martens.
+  * Make doc-base file installation less confusing.
+  * Update years of packaging copyright.
+  * Remove empty maintainer script from source package.
+    debhelper adds them anyway.
+  * Declare compliance with Debian Policy 3.9.4.
+
+ -- gregor herrmann <gregoa@debian.org>  Tue, 30 Jul 2013 20:03:25 +0200
+
+mimetic (0.9.7-3) unstable; urgency=low
+
+  * Revert "Move building of -doc package to override_dh_auto_build-indep,
+    and split Build-Depends and Build-Depends-Indep."
+    Fails on half of the buildds which call `debian/rules build' and not
+    `debian/rules build-arch', and then don't find doxygen from
+    Build-Depends-Indep.
+
+ -- gregor herrmann <gregoa@debian.org>  Fri, 13 Apr 2012 17:44:55 +0200
+
+mimetic (0.9.7-2) unstable; urgency=low
+
+  * debian/control: update descriptions (they were still referring to the old
+    license); thanks to TANIGUCHI Takaki (closes: #646459).
+  * Update Vcs-* headers.
+  * Add patch to fix build failure with gcc-4.7. (Closes: #667278)
+  * debian/copyright: update to Copyright-Format 1.0.
+  * Update years of packaging copyright.
+  * Bump Standards-Version to 3.9.3 (no changes).
+  * Remove unneeded lintian override.
+  * Set debhelper compatibility level to 9.
+  * Multiarch-ify packages (changes in debian/{control,*.install}).
+  * Use detached symbols in -dbg package.
+  * Move building of -doc package to override_dh_auto_build-indep, and
+    split Build-Depends and Build-Depends-Indep.
+
+ -- gregor herrmann <gregoa@debian.org>  Fri, 13 Apr 2012 16:20:07 +0200
+
+mimetic (0.9.7-1) unstable; urgency=low
+
+  * New upstream release.
+  * Update years of packaging copyright.
+  * Remove patch patch const-correctness.patch, applied upstream.
+  * Bump debhelper compat level and build dependency to 8; change order of
+    arguments on debian/rules.
+  * Remove ancient Replaces/Conflicts.
+  * Set Standards-Version to 3.9.2 (no further changes).
+  * Use dh-autoreconf to get rid of ancient libtool; drop autotool_dev; don't
+    clean test/autocutee.mk anymore. Add a lintian override for the libtool
+    warning.
+
+ -- gregor herrmann <gregoa@debian.org>  Sat, 10 Sep 2011 17:55:47 +0200
+
+mimetic (0.9.6-2) unstable; urgency=low
+
+  * Add patch const-correctness.patch to fix an error that is triggered by
+    modern gcc versions; thanks to Berthold Stoeger for the bug report and the
+    patch (closes: #583507).
+  * Convert to source format 3.0 (quilt).
+  * Set Standards-Version to 3.8.4 (no changes).
+  * Use the autotools-dev debhelper addon.
+  * debian/copyright: update formatting (DEP5) and years of packaging
+    copyright.
+
+ -- gregor herrmann <gregoa@debian.org>  Sat, 29 May 2010 16:08:53 +0200
+
+mimetic (0.9.6-1) unstable; urgency=low
+
+  * New upstream release.
+  * debian/control:
+    - change Section to debug for libmimetic0-dbg
+    - remove Section for libmimetic0 (duplicate)
+    - set Standards-Version to 3.8.1 (no changes)
+    - add ${misc:Depends}
+  * debian/copyright: update years of upstream and packaging copyright; the
+    upstream code is now released under the MIT license; update "headers".
+  * Remove debian/libmimetic-doc.{postinst,prerem}, install-docs doesn't need
+    to be called manually anymore.
+  * Set debhelper compatibility level to 7; adapt
+    debian/{control,compat,rules}.
+
+ -- gregor herrmann <gregoa@debian.org>  Fri, 15 May 2009 19:12:51 +0200
+
+mimetic (0.9.5-1) unstable; urgency=low
+
+  * New upstream release.
+  * Remove libtool.patch and quilt framework; upstream has updated
+    libtool/autotools in this release.
+  * Fix typo in debian/mimetic-doc (doc-base definition).
+
+ -- gregor herrmann <gregoa@debian.org>  Wed, 08 Oct 2008 18:43:06 +0200
+
+mimetic (0.9.4-2) unstable; urgency=low
+
+  * Add patch libtool.patch to get a newer libtool version (closes: #500317);
+    thanks to Kurt Roeckx for the bug report and the proposed solution.
+  * Add quilt framework (and README.source for compliance with Debian Policy
+    3.8.0).
+  * debian/rules:
+    - add a clean-stamp target to debian/rules in order to run `make distclean'
+      before unpatching configure and friends
+    - add test/autocutee.mk to dh_clean
+    - remove separate `make distclean' for doc/ directory
+
+ -- gregor herrmann <gregoa@debian.org>  Mon, 29 Sep 2008 18:01:47 +0200
+
+mimetic (0.9.4-1) unstable; urgency=low
+
+  * New upstream release.
+  * Drop patch gcc4.3_includes.diff, included upstream. Remove quilt
+    framework.
+  * debian/copyright: update years of upstream copyright.
+  * Remove historic debian/shlibs.local.
+  * Set Standards-Version to 3.8.0 (no changes).
+
+ -- gregor herrmann <gregoa@debian.org>  Fri, 19 Sep 2008 00:07:03 +0200
+
+mimetic (0.9.3-3) unstable; urgency=low
+
+  * debian/rules:
+    - create install-stamp target in debian/rules and adjust dependencies
+      accordingly
+    - remove config.{sub,guess} in clean target and copy them
+      over in configure target as a preparation for source format "3.0 (quilt)";
+      thanks to Raphaël Hertzog for the bug report (closes: #482730)
+  * debian/copyright:
+    - change to the new machine-readable format
+    - add stanza about packaging copyright
+  * Convert debian/changelog to UTF-8.
+  * debian/control: change my email address.
+  * Change doc-base section from Apps/Net to Network/Communication.
+  * Set debhelper compatibility level to 6.
+  * Refresh patch gcc4.3_includes.diff and add information to the file.
+
+ -- gregor herrmann <gregoa@debian.org>  Sat, 24 May 2008 21:54:44 +0200
+
+mimetic (0.9.3-2) unstable; urgency=low
+
+  * Switch from ${Source-Version} to ${binary:Version} in debian/control to
+    make the package binNMU safe.
+  * Don't ignore result of make distclean.
+  * Add a -dbg package.
+  * Remove useless file debian/compress from source package.
+  * Clean up debian/rules.
+  * Remove unneeded files debian/libmimetic0.dirs and
+    debian/libmimetic-dev.dirs.
+  * Move upstream URL from the description to the new Homepage field.
+  * Change XS-Vcs-* fields to Vcs-*.
+  * Add patch gcc4.3_includes.diff: adds #includes to header files to enable
+    compilation with gcc 4.3 (closes: #454897).
+  * Set Standards-Version to 3.7.3 (no further changes needed).
+
+ -- gregor herrmann <gregor+debian@comodo.priv.at>  Tue, 11 Dec 2007 03:02:58 +0100
+
+mimetic (0.9.3-1) unstable; urgency=low
+
+  * New upstream release, compatible with GCC 4.3 (closes: #417434).
+
+ -- gregor herrmann <gregor+debian@comodo.priv.at>  Tue, 03 Apr 2007 16:49:26 +0200
+
+mimetic (0.9.2-1) unstable; urgency=low
+
+  * New upstream release.
+  * Fix copy&paste error in comments in libmimetic-doc.{prerm,postinst} scripts.
+
+ -- gregor herrmann <gregor+debian@comodo.priv.at>  Sun, 21 Jan 2007 21:41:04 +0100
+
+mimetic (0.9.1-2) unstable; urgency=low
+
+  * Update to Standards-Version: 3.7.2 (no changes required).
+  * Set different short descriptions for the three packages
+    (runtime, development, documentation).
+  * Register documentation with doc-base.
+  * Add Tony Mancill to Uploaders.
+
+ -- gregor herrmann <gregor+debian@comodo.priv.at>  Fri, 16 Jun 2006 13:16:07 +0200
+
+mimetic (0.9.1-1) unstable; urgency=low
+
+  * New upstream release.
+
+ -- gregor herrmann <gregor+debian@comodo.priv.at>  Sun, 16 Apr 2006 14:20:11 +0200
+
+mimetic (0.8.9-7) unstable; urgency=low
+
+  * Changed package names for -doc and -dev packages on request of
+    ftpmaster.
+  * Cleaned up watch file.
+
+ -- gregor herrmann <gregor+debian@comodo.priv.at>  Wed, 15 Mar 2006 23:31:56 +0100
+
+mimetic (0.8.9-6) unstable; urgency=low
+
+  * Initial Debian release (closes: #313088).
+  * Set debhelper compatibility level to 5.
+
+ -- gregor herrmann <gregor+debian@comodo.priv.at>  Wed, 15 Mar 2006 17:17:56 +0100
+
+mimetic (0.8.9-5) unstable; urgency=low
+
+  * Added homepage to debian/control.
+  * Split package libmimetic0-dev into libmimetic0-dev and libmimetic-0-dev-doc.
+
+ -- gregor herrmann <gregor+debian@comodo.priv.at>  Sun, 25 Dec 2005 15:07:01 +0100
+
+mimetic (0.8.9-4) unstable; urgency=low
+
+  * Clarified copyright statment in debian/copyright.
+
+ -- gregor herrmann <gregor+debian@comodo.priv.at>  Wed, 31 Aug 2005 17:05:25 +0200
+
+mimetic (0.8.9-3) unstable; urgency=low
+
+  * Added missing build dependency on doxygen.
+
+ -- gregor herrmann <gregor+debian@comodo.priv.at>  Mon,  8 Aug 2005 16:33:43 +0200
+
+mimetic (0.8.9-2) unstable; urgency=low
+
+  * Compiled against libstdc++6.
+
+ -- gregor herrmann <gregor+debian@comodo.priv.at>  Sun,  7 Aug 2005 23:18:32 +0200
+
+mimetic (0.8.9-1) unstable; urgency=low
+
+  * Initial release.
+
+ -- gregor herrmann <gregor+debian@comodo.priv.at>  Sat, 11 Jun 2005 20:27:37 +0200

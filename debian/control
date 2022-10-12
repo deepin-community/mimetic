@@ -1,0 +1,73 @@
+Source: mimetic
+Maintainer: gregor herrmann <gregoa@debian.org>
+Uploaders: tony mancill <tmancill@debian.org>
+Section: libs
+Priority: optional
+Build-Depends: debhelper-compat (= 13),
+               g++ (>= 4:7)
+Build-Depends-Indep: doxygen <!nodoc>
+Standards-Version: 4.5.1
+Vcs-Browser: https://git.toastfreeware.priv.at/debian/mimetic.git
+Vcs-Git: https://git.toastfreeware.priv.at/debian/mimetic.git
+Homepage: http://www.codesink.org/mimetic_mime_library.html
+Rules-Requires-Root: no
+
+Package: libmimetic-dev
+Architecture: any
+Multi-Arch: same
+Section: libdevel
+Depends: ${misc:Depends},
+         libmimetic0v5 (= ${binary:Version})
+Suggests: libmimetic-doc
+Description: C++ MIME library (development)
+ mimetic is a MIME library written in C++ designed to be easy to use and
+ integrate but yet fast and efficient.
+ .
+ mimetic has been built around the standard lib. This means that you'll not
+ find yet another string class or list implementation and that you'll feel
+ comfortable in using this library from the very first time.
+ .
+ mimetic doesn't use exceptions but it heavily uses templates so a mostly
+ standard compliant C++ compiler is required.
+ .
+ This package contains the header files.
+
+Package: libmimetic-doc
+Architecture: all
+Multi-Arch: foreign
+Section: doc
+Depends: ${misc:Depends}
+Recommends: libmimetic-dev
+Description: C++ MIME library (documentation)
+ mimetic is a MIME library written in C++ designed to be easy to use and
+ integrate but yet fast and efficient.
+ .
+ mimetic has been built around the standard lib. This means that you'll not
+ find yet another string class or list implementation and that you'll feel
+ comfortable in using this library from the very first time.
+ .
+ mimetic doesn't use exceptions but it heavily uses templates so a mostly
+ standard compliant C++ compiler is required.
+ .
+ This package contains the developers' documentation.
+
+Package: libmimetic0v5
+Architecture: any
+Multi-Arch: same
+Depends: ${misc:Depends},
+         ${shlibs:Depends}
+Pre-Depends: ${misc:Pre-Depends}
+Conflicts: libmimetic0
+Replaces: libmimetic0
+Description: C++ MIME library (runtime)
+ mimetic is a MIME library written in C++ designed to be easy to use and
+ integrate but yet fast and efficient.
+ .
+ mimetic has been built around the standard lib. This means that you'll not
+ find yet another string class or list implementation and that you'll feel
+ comfortable in using this library from the very first time.
+ .
+ mimetic doesn't use exceptions but it heavily uses templates so a mostly
+ standard compliant C++ compiler is required.
+ .
+ This package contains the libraries.
