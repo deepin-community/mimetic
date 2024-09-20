@@ -1,3 +1,9 @@
+mimetic (0.9.8-10deepin0) unstable; urgency=medium
+
+  * No source change upload against GCC 12.
+
+ -- Tianyu Chen <sweetyfish@deepin.org>  Fri, 20 Sep 2024 12:13:38 +0800
+
 mimetic (0.9.8-10) unstable; urgency=medium
 
   * debian/watch: use more macros.
